@@ -4,11 +4,9 @@ import Stripe from "stripe";
 import { storage } from "./storage";
 import { insertPhotoSchema, insertStorySchema } from "@shared/schema";
 
-// Stripe integration - reference from blueprint:javascript_stripe
-const stripe = process.env.STRIPE_SECRET_KEY 
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: "2025-09-30.clover",
-    })
+// Stripe integration - initialize with account default API version
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
   : null;
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -93,11 +91,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100), // Convert to cents
+        amount: Math.round(amount * 100),
         currency: "usd",
-        metadata: {
-          purpose: "Max the Shiba Inu donation"
-        }
+        automatic_payment_methods: { enabled: true },
+        metadata: { purpose: "Max the Shiba Inu donation" },
       });
       
       res.json({ clientSecret: paymentIntent.client_secret });
