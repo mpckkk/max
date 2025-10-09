@@ -27,6 +27,8 @@ export default function Home() {
     },
   ];
 
+  const donateUrl = import.meta.env.VITE_DONATE_URL as string | undefined;
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -63,10 +65,17 @@ export default function Home() {
                 </Button>
               </Link>
               <Button asChild size="lg" className="text-base" data-testid="button-support-max">
-                <Link href="/donate">
-                  <Heart className="mr-2 h-5 w-5" />
-                  Support Max
-                </Link>
+                {donateUrl ? (
+                  <a href={donateUrl} target="_blank" rel="noopener noreferrer">
+                    <Heart className="mr-2 h-5 w-5" />
+                    Support Max
+                  </a>
+                ) : (
+                  <Link href="/donate">
+                    <Heart className="mr-2 h-5 w-5" />
+                    Support Max
+                  </Link>
+                )}
               </Button>
             </div>
           </div>
@@ -154,10 +163,17 @@ export default function Home() {
             Every contribution makes a difference in keeping this good boy happy and healthy!
           </p>
           <Button asChild size="lg" className="text-base" data-testid="button-donate-cta">
-            <Link href="/donate">
-              <Heart className="mr-2 h-5 w-5" />
-              Make a Donation
-            </Link>
+            {donateUrl ? (
+              <a href={donateUrl} target="_blank" rel="noopener noreferrer">
+                <Heart className="mr-2 h-5 w-5" />
+                Make a Donation
+              </a>
+            ) : (
+              <Link href="/donate">
+                <Heart className="mr-2 h-5 w-5" />
+                Make a Donation
+              </Link>
+            )}
           </Button>
         </div>
       </section>

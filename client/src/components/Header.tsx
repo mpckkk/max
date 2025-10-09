@@ -6,6 +6,7 @@ import { useState } from "react";
 export function Header() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const donateUrl = import.meta.env.VITE_DONATE_URL as string | undefined;
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -34,10 +35,17 @@ export function Header() {
             </Link>
           ))}
           <Button asChild variant="default" size="sm" className="ml-2" data-testid="button-donate-header">
-            <Link href="/donate">
-              <Heart className="w-4 h-4 mr-2" />
-              Donate
-            </Link>
+            {donateUrl ? (
+              <a href={donateUrl} target="_blank" rel="noopener noreferrer">
+                <Heart className="w-4 h-4 mr-2" />
+                Donate
+              </a>
+            ) : (
+              <Link href="/donate">
+                <Heart className="w-4 h-4 mr-2" />
+                Donate
+              </Link>
+            )}
           </Button>
         </nav>
 
@@ -70,10 +78,17 @@ export function Header() {
               </Link>
             ))}
             <Button asChild variant="default" className="w-full mt-2" data-testid="button-donate-mobile">
-              <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>
-                <Heart className="w-4 h-4 mr-2" />
-                Donate
-              </Link>
+              {donateUrl ? (
+                <a href={donateUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
+                  <Heart className="w-4 h-4 mr-2" />
+                  Donate
+                </a>
+              ) : (
+                <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>
+                  <Heart className="w-4 h-4 mr-2" />
+                  Donate
+                </Link>
+              )}
             </Button>
           </nav>
         </div>
