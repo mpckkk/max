@@ -33,12 +33,12 @@ export function Header() {
               </span>
             </Link>
           ))}
-          <Link href="/donate">
-            <Button variant="default" size="sm" className="ml-2" data-testid="button-donate-header">
+          <Button asChild variant="default" size="sm" className="ml-2" data-testid="button-donate-header">
+            <Link href="/donate">
               <Heart className="w-4 h-4 mr-2" />
               Donate
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -69,12 +69,12 @@ export function Header() {
                 </span>
               </Link>
             ))}
-            <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>
-              <Button variant="default" className="w-full mt-2" data-testid="button-donate-mobile">
+            <Button asChild variant="default" className="w-full mt-2" data-testid="button-donate-mobile">
+              <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>
                 <Heart className="w-4 h-4 mr-2" />
                 Donate
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </nav>
         </div>
       )}
