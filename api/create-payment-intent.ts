@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 
 const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2025-09-30.clover" })
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
   : null;
 
 export default async function handler(req: any, res: any) {
@@ -25,6 +25,7 @@ export default async function handler(req: any, res: any) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100),
       currency: "usd",
+      automatic_payment_methods: { enabled: true },
       metadata: { purpose: "Max the Shiba Inu donation" },
     });
 

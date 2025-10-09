@@ -24,10 +24,7 @@ function DonationForm() {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [isProcessing, setIsProcessing] = useState(false);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const stripe = useStripe();
-  const elements = useElements();
   const { toast } = useToast();
 
   const finalAmount = selectedAmount || parseFloat(customAmount) || 0;
@@ -54,16 +51,6 @@ function DonationForm() {
     try {
       const response = await apiRequest("POST", "/api/create-payment-intent", { amount: finalAmount });
       const data = await response.json();
-      
-      if (response.status === 503) {
-        toast({
-          title: "Payment Not Available",
-          description: data.message || "Donation functionality is currently not configured.",
-          variant: "destructive",
-        });
-        return;
-      }
-      
       setClientSecret(data.clientSecret);
     } catch (error: any) {
       toast({
@@ -71,48 +58,6 @@ function DonationForm() {
         description: error.message || "Failed to create payment",
         variant: "destructive",
       });
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setIsProcessing(true);
-
-    try {
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: window.location.origin + "/donate?success=true",
-        },
-        redirect: "if_required",
-      });
-
-      if (error) {
-        toast({
-          title: "Payment Failed",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        setPaymentSuccess(true);
-        toast({
-          title: "Payment Successful!",
-          description: "Thank you for supporting Max!",
-        });
-      }
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message || "Something went wrong",
-        variant: "destructive",
-      });
-    } finally {
-      setIsProcessing(false);
     }
   };
 
@@ -245,12 +190,53 @@ function DonationForm() {
   }
 
   return (
+    <Elements stripe={stripePromise!} options={{ clientSecret }}>
+      <CheckoutForm
+        amount={finalAmount}
+        onSuccess={() => {
+          setPaymentSuccess(true);
+        }}
+      />
+    </Elements>
+  );
+}
+
+function CheckoutForm({ amount, onSuccess }: { amount: number; onSuccess: () => void }) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const { toast } = useToast();
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!stripe || !elements) return;
+
+    setIsProcessing(true);
+    try {
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: { return_url: window.location.origin + "/donate?success=true" },
+        redirect: "if_required",
+      });
+
+      if (error) {
+        toast({ title: "Payment Failed", description: error.message, variant: "destructive" });
+      } else {
+        onSuccess();
+        toast({ title: "Payment Successful!", description: "Thank you for supporting Max!" });
+      }
+    } catch (error: any) {
+      toast({ title: "Error", description: error.message || "Something went wrong", variant: "destructive" });
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  return (
     <Card className="p-8 space-y-6 max-w-2xl mx-auto">
       <div className="text-center space-y-2">
         <h2 className="font-serif text-2xl font-semibold">Complete Your Donation</h2>
-        <p className="text-lg font-medium text-primary">
-          Amount: ${finalAmount.toFixed(2)}
-        </p>
+        <p className="text-lg font-medium text-primary">Amount: ${amount.toFixed(2)}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -262,13 +248,11 @@ function DonationForm() {
           size="lg"
           data-testid="button-submit-payment"
         >
-          {isProcessing ? "Processing..." : `Donate $${finalAmount.toFixed(2)}`}
+          {isProcessing ? "Processing..." : `Donate $${amount.toFixed(2)}`}
         </Button>
       </form>
 
-      <p className="text-xs text-center text-muted-foreground">
-        Payments are securely processed by Stripe
-      </p>
+      <p className="text-xs text-center text-muted-foreground">Payments are securely processed by Stripe</p>
     </Card>
   );
 }
@@ -287,18 +271,14 @@ export default function Donate() {
     <div className="min-h-screen py-16 md:py-24">
       <div className="container max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h1 className="font-serif text-4xl md:text-5xl font-semibold mb-4">
-            Support Max
-          </h1>
+          <h1 className="font-serif text-4xl md:text-5xl font-semibold mb-4">Support Max</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Every contribution helps Max live his best life with treats, toys, and excellent care
           </p>
         </div>
 
         {stripePromise ? (
-          <Elements stripe={stripePromise}>
-            <DonationForm />
-          </Elements>
+          <DonationForm />
         ) : (
           <Card className="p-8 md:p-12 text-center space-y-6 max-w-2xl mx-auto">
             <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto">
