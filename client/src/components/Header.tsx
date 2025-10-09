@@ -2,11 +2,12 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Heart } from "lucide-react";
 import { useState } from "react";
+import { resolveDonateUrl } from "@/lib/donate";
 
 export function Header() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const donateUrl = import.meta.env.VITE_DONATE_URL as string | undefined;
+  const donateUrl = resolveDonateUrl();
 
   const navLinks = [
     { href: "/", label: "Home" },

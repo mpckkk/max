@@ -1,10 +1,33 @@
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, Coffee } from "lucide-react";
 import donateImage from "@assets/stock_images/adorable_shiba_inu_d_30bf54df.jpg";
+import { resolveDonateUrl } from "@/lib/donate";
 
 export default function Donate() {
-  const donateUrl = import.meta.env.VITE_DONATE_URL as string | undefined;
+  const [donateUrl, setDonateUrl] = useState<string>(resolveDonateUrl());
+  const [customUrl, setCustomUrl] = useState<string>("");
+  const hasEnvUrl = Boolean((import.meta.env.VITE_DONATE_URL as string | undefined)?.trim());
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !hasEnvUrl) {
+      const stored = window.localStorage.getItem("donateUrl") || "";
+      setCustomUrl(stored);
+    }
+  }, [hasEnvUrl]);
+
+  const handleSaveCustomUrl = () => {
+    const value = customUrl.trim();
+    if (typeof window !== "undefined") {
+      if (value) {
+        window.localStorage.setItem("donateUrl", value);
+      } else {
+        window.localStorage.removeItem("donateUrl");
+      }
+    }
+    setDonateUrl(resolveDonateUrl());
+  };
 
   return (
     <div className="min-h-screen py-16 md:py-24">
@@ -32,25 +55,49 @@ export default function Donate() {
             </p>
           </div>
 
-          {donateUrl ? (
-            <Button asChild size="lg" className="text-base" data-testid="button-donate-external">
-              <a href={donateUrl} target="_blank" rel="noopener noreferrer">
-                <Coffee className="mr-2 h-5 w-5" />
-                Open Donation Page
-              </a>
-            </Button>
-          ) : (
-            <Card className="p-6 bg-primary/5">
-              <h3 className="font-semibold mb-2">Donations Currently Unavailable</h3>
-              <p className="text-sm text-muted-foreground">
-                Set <code>VITE_DONATE_URL</code> in your environment to enable the donation button.
+          <Button asChild size="lg" className="text-base" data-testid="button-donate-external">
+            <a href={donateUrl} target="_blank" rel="noopener noreferrer">
+              <Coffee className="mr-2 h-5 w-5" />
+              Open Donation Page
+            </a>
+          </Button>
+
+          {!hasEnvUrl && (
+            <div className="pt-4 space-y-2">
+              <label htmlFor="custom-donate-url" className="block text-sm font-medium">
+                Set your donation link (optional)
+              </label>
+              <input
+                id="custom-donate-url"
+                type="url"
+                placeholder="https://www.buymeacoffee.com/your-handle"
+                value={customUrl}
+                onChange={(e) => setCustomUrl(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <div className="flex gap-2 justify-center">
+                <Button onClick={handleSaveCustomUrl} variant="outline" size="sm">
+                  Save link
+                </Button>
+                <Button
+                  onClick={() => {
+                    setCustomUrl("");
+                    if (typeof window !== "undefined") window.localStorage.removeItem("donateUrl");
+                    setDonateUrl(resolveDonateUrl());
+                  }}
+                  variant="ghost"
+                  size="sm"
+                >
+                  Clear
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Without a custom link, the button opens the Buy Me a Coffee homepage.
               </p>
-            </Card>
+            </div>
           )}
 
-          <p className="text-sm text-muted-foreground">
-            Thank you for supporting Max!
-          </p>
+          <p className="text-sm text-muted-foreground">Thank you for supporting Max!</p>
         </Card>
       </div>
     </div>

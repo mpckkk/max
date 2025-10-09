@@ -7,6 +7,7 @@ import heroImage from "@assets/stock_images/adorable_shiba_inu_d_f58c76b3.jpg";
 import photo1 from "@assets/stock_images/adorable_shiba_inu_d_0a7737de.jpg";
 import photo2 from "@assets/stock_images/adorable_shiba_inu_d_127300b3.jpg";
 import photo3 from "@assets/stock_images/adorable_shiba_inu_d_608d0ad2.jpg";
+import { resolveDonateUrl } from "@/lib/donate";
 
 export default function Home() {
   const highlights = [
@@ -27,7 +28,7 @@ export default function Home() {
     },
   ];
 
-  const donateUrl = import.meta.env.VITE_DONATE_URL as string | undefined;
+  const donateUrl = resolveDonateUrl();
 
   return (
     <div className="min-h-screen">
