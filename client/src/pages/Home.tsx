@@ -62,12 +62,12 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link href="/donate">
-                <Button size="lg" className="text-base" data-testid="button-support-max">
+              <Button asChild size="lg" className="text-base" data-testid="button-support-max">
+                <Link href="/donate">
                   <Heart className="mr-2 h-5 w-5" />
                   Support Max
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -153,12 +153,12 @@ export default function Home() {
             Your generous donations help provide Max with treats, toys, and essential vet care. 
             Every contribution makes a difference in keeping this good boy happy and healthy!
           </p>
-          <Link href="/donate">
-            <Button size="lg" className="text-base" data-testid="button-donate-cta">
+          <Button asChild size="lg" className="text-base" data-testid="button-donate-cta">
+            <Link href="/donate">
               <Heart className="mr-2 h-5 w-5" />
               Make a Donation
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </section>
     </div>
