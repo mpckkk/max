@@ -27,52 +27,52 @@ export class MemStorage implements IStorage {
   private seedData() {
     const samplePhotos: InsertPhoto[] = [
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_f58c76b3.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_f58c76b3.jpg",
         caption: "Enjoying a beautiful sunny day at the park",
         category: "Adventures",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_0a7737de.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_0a7737de.jpg",
         caption: "Professional napper at work",
         category: "Naps",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_127300b3.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_127300b3.jpg",
         caption: "Ready for playtime with my favorite toy",
         category: "Play",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_608d0ad2.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_608d0ad2.jpg",
         caption: "Exploring new trails and sniffing all the things",
         category: "Adventures",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_339e76b0.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_339e76b0.jpg",
         caption: "My best portrait pose",
         category: "Silly",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_30bf54df.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_30bf54df.jpg",
         caption: "Waiting patiently for dinner time",
         category: "Meals",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_712a2a34.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_712a2a34.jpg",
         caption: "Lounging in my favorite spot",
         category: "Naps",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_e0de5fa4.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_e0de5fa4.jpg",
         caption: "Making silly faces for treats",
         category: "Silly",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_0ab692a5.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_0ab692a5.jpg",
         caption: "Chasing squirrels at the dog park",
         category: "Play",
       },
       {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_740bef4d.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_740bef4d.jpg",
         caption: "Living my best life",
         category: "Adventures",
       },
@@ -87,12 +87,12 @@ export class MemStorage implements IStorage {
       {
         title: "First Day Home",
         description: "The day I came home as a tiny puppy was the beginning of an amazing journey. I immediately claimed the comfiest spot on the couch!",
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_f58c76b3.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_f58c76b3.jpg",
       },
       {
         title: "Beach Adventure",
         description: "My first time at the beach was unforgettable. I wasn't sure about the water at first, but the sand was perfect for digging!",
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_608d0ad2.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_608d0ad2.jpg",
       },
     ];
 

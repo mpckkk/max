@@ -27,6 +27,9 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
+  // Copy static assets (stock images) to the build output so
+  // URLs like /attached_assets/... work in production hosting
+  publicDir: path.resolve(import.meta.dirname, "attached_assets"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,

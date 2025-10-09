@@ -25,6 +25,19 @@ A simple React + Express app that serves a photo/story site for Max the Shiba In
 - The server must listen on `process.env.PORT` (already implemented).
 - Build on CI: `npm ci && npm run build`, then run `npm start`.
 
+### Deploying to Vercel (optional)
+This app can be hosted on Vercel in two ways:
+
+1) Single Node server (recommended here):
+- Project Settings → Build & Output → Build Command: `npm run build`
+- Output Directory: `dist/public`
+- Install Command: `npm ci`
+- Start Command: `npm start` (Vercel Node Server)
+
+2) Pure static front-end + serverless API (advanced):
+- Serve `dist/public` as static output and add API routes under `api/` functions.
+- Configure rewrites so `/api/*` go to serverless functions and everything else to `index.html`.
+
 ### Project structure
 - `client/`: React app (Vite)
 - `server/`: Express server (TypeScript)
