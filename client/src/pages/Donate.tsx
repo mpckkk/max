@@ -9,10 +9,8 @@ import { Heart, Check } from "lucide-react";
 import donateImage from "@assets/stock_images/adorable_shiba_inu_d_30bf54df.jpg";
 
 // Stripe integration - reference from blueprint:javascript_stripe
-// Provide a safe dev fallback publishable key so the UI renders locally
-const publishableStripeKey =
-  import.meta.env.VITE_STRIPE_PUBLIC_KEY ||
-  (import.meta.env.MODE !== "production" ? "pk_test_FAKE_FOR_DEV_ONLY" : undefined);
+// Only enable Stripe when a publishable key is provided via env
+const publishableStripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
 const stripePromise = publishableStripeKey ? loadStripe(publishableStripeKey) : null;
 
 const presetAmounts = [
