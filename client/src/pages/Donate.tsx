@@ -9,9 +9,11 @@ import { Heart, Check } from "lucide-react";
 import donateImage from "@assets/stock_images/adorable_shiba_inu_d_30bf54df.jpg";
 
 // Stripe integration - reference from blueprint:javascript_stripe
-const stripePromise = import.meta.env.VITE_STRIPE_PUBLIC_KEY 
-  ? loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY)
-  : null;
+// Provide a safe dev fallback publishable key so the UI renders locally
+const publishableStripeKey =
+  import.meta.env.VITE_STRIPE_PUBLIC_KEY ||
+  (import.meta.env.MODE !== "production" ? "pk_test_FAKE_FOR_DEV_ONLY" : undefined);
+const stripePromise = publishableStripeKey ? loadStripe(publishableStripeKey) : null;
 
 const presetAmounts = [
   { amount: 5, label: "$5" },
