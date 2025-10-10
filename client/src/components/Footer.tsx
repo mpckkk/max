@@ -9,7 +9,7 @@ export function Footer() {
             Made with <span className="text-accent">♥</span> for Max
           </p>
           <p className="text-xs text-muted-foreground">
-            © {currentYear} Max the Shiba Inu. All rights reserved.
+            © {currentYear} AICyto. All rights reserved.
           </p>
         </div>
       </div>
