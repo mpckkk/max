@@ -64,7 +64,7 @@ export class MemStorage implements IStorage {
       {
         imageUrl: "/stock_images/adorable_shiba_inu_d_e0de5fa4.jpg",
         caption: "Making silly faces for treats",
-        category: "Silly",
+        category: "Adventures",
       },
       {
         imageUrl: "/stock_images/adorable_shiba_inu_d_0ab692a5.jpg",
