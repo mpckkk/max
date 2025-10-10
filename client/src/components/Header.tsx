@@ -34,10 +34,10 @@ export function Header() {
             </Link>
           ))}
           <Button asChild variant="default" size="sm" className="ml-2" data-testid="button-donate-header">
-            <Link href="/donate">
+            <a href="https://buymeacoffee.com/maxisshibainu">
               <Heart className="w-4 h-4 mr-2" />
               Donate
-            </Link>
+            </a>
           </Button>
         </nav>
 
@@ -70,10 +70,10 @@ export function Header() {
               </Link>
             ))}
             <Button asChild variant="default" className="w-full mt-2" data-testid="button-donate-mobile">
-              <Link href="/donate" onClick={() => setMobileMenuOpen(false)}>
+              <a href="https://buymeacoffee.com/maxisshibainu" onClick={() => setMobileMenuOpen(false)}>
                 <Heart className="w-4 h-4 mr-2" />
                 Donate
-              </Link>
+              </a>
             </Button>
           </nav>
         </div>

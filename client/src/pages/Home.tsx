@@ -63,10 +63,10 @@ export default function Home() {
                 </Button>
               </Link>
               <Button asChild size="lg" className="text-base" data-testid="button-support-max">
-                <Link href="/donate">
+                <a href="https://buymeacoffee.com/maxisshibainu">
                   <Heart className="mr-2 h-5 w-5" />
                   Support Max
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
@@ -154,10 +154,10 @@ export default function Home() {
             Every contribution makes a difference in keeping this good boy happy and healthy!
           </p>
           <Button asChild size="lg" className="text-base" data-testid="button-donate-cta">
-            <Link href="/donate">
+            <a href="https://buymeacoffee.com/maxisshibainu">
               <Heart className="mr-2 h-5 w-5" />
               Make a Donation
-            </Link>
+            </a>
           </Button>
         </div>
       </section>
