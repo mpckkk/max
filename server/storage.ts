@@ -42,11 +42,6 @@ export class MemStorage implements IStorage {
         category: "Play",
       },
       {
-        imageUrl: "/stock_images/adorable_shiba_inu_d_608d0ad2.jpg",
-        caption: "Exploring new trails and sniffing all the things",
-        category: "Adventures",
-      },
-      {
         imageUrl: "/stock_images/adorable_shiba_inu_d_339e76b0.jpg",
         caption: "My best portrait pose",
         category: "Silly",
@@ -60,21 +55,6 @@ export class MemStorage implements IStorage {
         imageUrl: "/stock_images/adorable_shiba_inu_d_712a2a34.jpg",
         caption: "Lounging in my favorite spot",
         category: "Naps",
-      },
-      {
-        imageUrl: "/stock_images/adorable_shiba_inu_d_e0de5fa4.jpg",
-        caption: "Making silly faces for treats",
-        category: "Silly",
-      },
-      {
-        imageUrl: "/stock_images/adorable_shiba_inu_d_0ab692a5.jpg",
-        caption: "Chasing squirrels at the dog park",
-        category: "Play",
-      },
-      {
-        imageUrl: "/attached_assets/stock_images/adorable_shiba_inu_d_e0de5fa4.jpg",
-        caption: "Living my best life",
-        category: "Adventures",
       },
     ];
 
