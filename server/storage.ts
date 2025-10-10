@@ -72,7 +72,7 @@ export class MemStorage implements IStorage {
         category: "Play",
       },
       {
-        imageUrl: "/stock_images/adorable_shiba_inu_d_740bef4d.jpg",
+        imageUrl: "/stock_images/adorable_shiba_inu_d_e0de5fa4.jpg",
         caption: "Living my best life",
         category: "Adventures",
       },
