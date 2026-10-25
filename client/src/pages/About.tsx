@@ -35,7 +35,7 @@ export default function About() {
             Meet Max
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            The most lovable 9-year-old Shiba Inu you'll ever meet
+            The most lovable 10-year-old Shiba Inu you'll ever meet
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-base leading-relaxed text-foreground">
                 <p>
-                  Max is a spirited 9-year-old Shiba Inu who has been bringing joy and laughter 
+                  Max is a spirited 10-year-old Shiba Inu who has been bringing joy and laughter 
                   to his family since he was just a tiny pup. With his signature curly tail 
                   and expressive face, he's mastered the art of getting exactly what he wants.
                 </p>
@@ -70,7 +70,7 @@ export default function About() {
                   and that classic Shiba independence.
                 </p>
                 <p className="text-muted-foreground">
-                  Born in 2016, Max has spent his years perfecting the "Shiba scream," 
+                  Born in 2016 Aug, Max has spent his years perfecting the "Shiba scream," 
                   mastering the art of selective hearing, and becoming an expert at finding 
                   the coziest napping spots in the house.
                 </p>
