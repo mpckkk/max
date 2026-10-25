@@ -17,7 +17,7 @@ export default function Home() {
     },
     {
       icon: Smile,
-      title: "9 Years Young",
+      title: "10 Years young",
       description: "Celebrating nearly a decade of joy, fluff, and Shiba sass",
     },
     {
@@ -42,13 +42,13 @@ export default function Home() {
         <div className="relative h-full flex items-center justify-center text-center px-6">
           <div className="max-w-4xl space-y-6">
             <Badge variant="secondary" className="bg-card/90 backdrop-blur-sm border-card-border px-4 py-2 text-sm" data-testid="badge-age">
-              9 Years Old
+              10 Years Old
             </Badge>
             <h1 className="font-serif text-6xl md:text-7xl font-bold text-white drop-shadow-lg">
               Max
             </h1>
             <p className="text-xl md:text-2xl text-white/95 font-medium drop-shadow-md">
-              9 years of joy and fluff
+              10 years of joy and fluff
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link href="/gallery">
